@@ -1,0 +1,5 @@
+/dist
+/dist.es2015
+/node_modules
+*.log
+*.tgz

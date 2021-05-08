@@ -1,0 +1,40 @@
+{
+  "name": "is-valid-slug",
+  "version": "1.0.0",
+  "description": "Validate URL slug",
+  "main": "dist/index.js",
+  "main:src": "src/index.ts",
+  "module": "dist.es2015/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RauliL/is-valid-slug"
+  },
+  "keywords": [
+    "valid",
+    "validate",
+    "validator",
+    "check",
+    "checker",
+    "slug"
+  ],
+  "author": "Rauli Laine <rauli.laine@iki.fi>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RauliL/is-valid-slug/issues"
+  },
+  "homepage": "https://github.com/RauliL/is-valid-slug",
+  "scripts": {
+    "build": "tsc && tsc -P tsconfig.es2015.json",
+    "prepack": "npm run build",
+    "prebuild": "rimraf dist/ /dist.es2015",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^26.6.3",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.5",
+    "typescript": "^4.2.4"
+  }
+}

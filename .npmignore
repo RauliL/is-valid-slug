@@ -1,0 +1,8 @@
+/.github
+/jest.config.js
+/node_modules
+/src
+/tsconfig.json
+/tsconfig.es2015.json
+*.log
+*.tgz
