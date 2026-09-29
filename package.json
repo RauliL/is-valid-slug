@@ -1,11 +1,11 @@
 {
   "name": "is-valid-slug",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Validate URL slug",
+  "type": "module",
   "main": "dist/index.js",
   "main:src": "src/index.ts",
-  "module": "dist.es2015/index.js",
-  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/RauliL/is-valid-slug"
@@ -18,6 +18,10 @@
     "checker",
     "slug"
   ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "author": "Rauli Laine <rauli.laine@iki.fi>",
   "license": "MIT",
   "bugs": {
@@ -25,16 +29,23 @@
   },
   "homepage": "https://github.com/RauliL/is-valid-slug",
   "scripts": {
-    "build": "tsc && tsc -P tsconfig.es2015.json",
-    "prepack": "npm run build",
-    "prebuild": "rimraf dist/ /dist.es2015",
-    "test": "jest"
+    "build": "tsc",
+    "clean": "rimraf './dist'",
+    "lint": "eslint",
+    "test": "vitest",
+    "style:check": "prettier --check .",
+    "style:fix": "prettier --write .",
+    "prebuild": "$npm_execpath run clean",
+    "prepack": "$npm_execpath run build"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "jest": "^26.6.3",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^26.5.5",
-    "typescript": "^4.2.4"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "jiti": "^2.7.0",
+    "prettier": "^3.9.9",
+    "typescript": "^6.0.0",
+    "typescript-eslint": "^8.71.0",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2"
   }
 }

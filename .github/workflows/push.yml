@@ -1,4 +1,4 @@
-name: npm build and test
+name: Test
 
 on:
   push:
@@ -12,14 +12,37 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [22.x, 24.x, 26.x]
 
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm run build
-      - run: npm run test
+      - name: Install dependencies
+        run: yarn install
+      - name: Check code style
+        run: yarn style:check
+      - name: Run ESLint
+        run: yarn lint
+      - name: Build the entire project
+        run: yarn build
+      - name: Run tests
+        run: yarn test --coverage
+      - name: Send test coverage to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          flag-name: ${{ matrix.node-version }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel: true
+
+  finish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
